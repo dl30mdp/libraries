@@ -1,0 +1,48 @@
+Function Last_Row_Worksheet(ByRef WorkSheetHere As Worksheet) As Long    '2022-05-22 2022-05-31
+
+      Dim DA As Boolean, EE As Boolean
+
+10    On Error GoTo Last_Row_Worksheet_Error
+
+20    DA = Application.DisplayAlerts: EE = Application.EnableEvents         '2022-05-22
+30    Application.DisplayAlerts = False
+40    Application.EnableEvents = False
+
+50    Last_Row_Worksheet = WorkSheetHere.UsedRange.Rows.Count + WorkSheetHere.UsedRange.Row - 1
+
+60    Application.DisplayAlerts = DA: Application.EnableEvents = EE  '2022-05-22
+70    On Error GoTo 0
+80    Exit Function
+
+Last_Row_Worksheet_Error:
+
+90    Call GOL_LOG("ERROR", Err.Number, Err.Description, Erl, "Last_Row_Worksheet", "AAA_LIB_worksheet")
+100   Application.DisplayAlerts = DA: Application.EnableEvents = EE  '2022-05-22
+
+End Function
+
+'---
+
+Function Last_COL_Worksheet(ByRef WorkSheetHere As Worksheet) As Integer    '2022-05-22
+
+      Dim DA As Boolean, EE As Boolean
+
+10    On Error GoTo Last_COL_Worksheet_Error
+
+20    DA = Application.DisplayAlerts: EE = Application.EnableEvents         '2022-05-22
+30    Application.DisplayAlerts = False
+40    Application.EnableEvents = False
+
+      '#### Ultamate Last row detection !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+50    Last_COL_Worksheet = WorkSheetHere.UsedRange.Columns.Count + WorkSheetHere.UsedRange.Column - 1
+
+60    Application.DisplayAlerts = DA: Application.EnableEvents = EE  '2022-05-22
+70    On Error GoTo 0
+80    Exit Function
+
+Last_COL_Worksheet_Error:
+
+90    Call GOL_LOG("ERROR", Err.Number, Err.Description, Erl, "Last_COL_Worksheet", "AAA_LIB_worksheet")
+100   Application.DisplayAlerts = DA: Application.EnableEvents = EE  '2022-05-22
+
+End Function
