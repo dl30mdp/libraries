@@ -46,3 +46,26 @@ Last_COL_Worksheet_Error:
 100   Application.DisplayAlerts = DA: Application.EnableEvents = EE  '2022-05-22
 
 End Function
+
+'---
+
+Function count_number_of_files(ByVal File_Path_and_Name) As Long
+
+          Dim fileName As String
+10        On Error GoTo count_number_of_files_Error
+
+20        count_number_of_files = 0
+30        fileName = Dir(File_Path_and_Name)
+40        Do While fileName <> ""
+50            count_number_of_files = count_number_of_files + 1
+60            fileName = Dir()
+70        Loop
+
+80        On Error GoTo 0
+90        Exit Function
+
+count_number_of_files_Error:
+
+100       GOL_LOG "ERROR", Err.Number, Err.Description, Erl, "count_number_of_files", "TEAM_LIB_File_B3", , True
+
+End Function
